@@ -24,8 +24,6 @@ pre, code {
 	border-radius: 5px;
 	background-color: #b5b2b1;
 	line-height: 135% !important;
-}
-
-code {
+	display: inline-block;
 	padding: 2px;
 }
