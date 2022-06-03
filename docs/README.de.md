@@ -1,6 +1,6 @@
 [![pages-build-deployment](https://github.com/J0J0HA/test/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/J0J0HA/test/actions/workflows/pages/pages-build-deployment)
 # AutoDocs
-AutoDocs konvertiert ausgwählte `.md`-Dateien zu `.html`-Dateien und überträgt sie zusammen mit anderen ausgewählten Dateien in den /docs ordner von GitHub Pages.
+AutoDocs konvertiert ausgewählte `.md`-Dateien zu `.html`-Dateien und überträgt sie zusammen mit anderen ausgewählten Dateien in den /docs ordner von GitHub Pages.
 
 ## Beispiel
 Dieses Repository enthält selbst den Workflow für AutoDocs.  
@@ -18,8 +18,10 @@ Dieses Repository enthält selbst den Workflow für AutoDocs.
 Datei `config.yml`:
 ```
 index: README.md                               # The md file to be shown at /  (optional)
+scripts:                                       # list of js files to load      (optional)
+  - sources/script.js
 style:                                         # Container for styling         (optional)
-  favicon: sources/favicon-96x96.png           # Link to the favicon           (optional)
+  favicon: sources/favicon.png                 # Link to the favicon           (optional)
   load:                                        # list of css files to load     (optional)
     - sources/style.css                        
   themes:                                      # list of themes (name: link)   (optional)
