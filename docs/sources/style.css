@@ -26,6 +26,9 @@ pre, code {
 	line-height: 135% !important;
 	display: inline-block;
 	padding: 2px;
+}
+
+pre {
 	width: 95%;
 	margin: 2.5%;
 }
