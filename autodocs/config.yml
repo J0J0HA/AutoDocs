@@ -1,4 +1,5 @@
 index: README.md
 files:
   - README.md
+  - README.de.md
   - source/*
