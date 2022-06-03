@@ -28,7 +28,9 @@ with open("config.yml", "r") as file:
 extra = ""
 # -> include style
 if "style" in config:
-    extra += '<link rel="stylesheet" href="' + config["style"]["load"] + '" />'
+    if "load" in config["style"]:
+        for link in config["style"]["load"]:
+            extra += '<link rel="stylesheet" href="' + link + '" />'
     if "themes" in config["style"]:
         extra += '<script src="https://files.jojojux.de/api/readme/script.js"></script>'
         extra += '<script>set_themes(' + json.dumps(config["style"]["themes"]) + ')</script>'
