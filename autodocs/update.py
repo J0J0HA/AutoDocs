@@ -65,9 +65,9 @@ for folder in config["folders"]:
 
 # implement internal files
 print(f"Creating folder '.autodocs'...")
-os.mkdir("../docs/_autodocs")
-os.system("cp 'static/script.js' '../docs/_autodocs/script.js'")
-os.system("cp 'static/style.css' '../docs/_autodocs/style.css'")
+os.mkdir("../docs/:autodocs")
+os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
+os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
 
 # transfer files
 for path in config["files"]:
