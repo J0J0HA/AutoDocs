@@ -1,5 +1,6 @@
 index: README.md
 style:
+  favicon: favicon.png
   load:
     - sources/style.css
   themes:
