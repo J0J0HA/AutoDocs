@@ -11,4 +11,4 @@ folders:
 files:
   - README.md
   - README.de.md
-  - sources/*
+  - sources/**
