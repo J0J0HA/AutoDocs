@@ -16,17 +16,25 @@ with open("config.yml", "r") as file:
 with open("template.html", "r") as file:
     template = file.read()
 
-for file in config["files"]:
-    if file.endswith(".md"):
-        raw = requests.get("https://raw.githubusercontent.com/" + config["name"] + "/main/" + file).text
-        html = gh_md_to_html.core_converter.markdown(raw)
-        with open("../docs/" + file + ".html", "w") as file:
-            file.write(
-                template
-                    .replace("%title%", str(config["name"]) + "/" + str(file))
-                    .replace("%content%", html)
-            )
-    else:
-        raw = requests.get("https://raw.githubusercontent.com/" + config["name"] + "/main/" + file).text
-        with open("../docs/" + file, "w") as file:
-            file.write(raw)
+for path in config["files"]:
+    for filen in glob.glob("../" + path):
+        if filen.endswith(".md"):
+            with open(filen, "r") as file:
+                raw = file.read()
+            html = gh_md_to_html.core_converter.markdown(raw)
+            with open("../docs/" + filen + ".html", "w") as file:
+                file.write(
+                    template
+                        .replace("%title%", filen)
+                        .replace("%content%", html)
+                )
+        else:
+            with open(filen, "rb") as file:
+                raw = file.read()
+            with open("../docs/" + filen, "wb") as file:
+                file.write(raw)
+             
+if "index" in config:
+    with open("../docs/index.html" + file, "w") as outfile:
+        with open("../docs/" + config["index"] + ".html", "r") as infile:
+            outfile.write(infile.read())
