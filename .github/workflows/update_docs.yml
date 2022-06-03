@@ -1,4 +1,4 @@
-name: Update Docs Folder Contents
+name: Update Docs Webpage
 
 on:
   push:
