@@ -3,9 +3,9 @@
 AutoDocs konvertiert ausgwählte `.md`-Dateien zu `.html`-Dateien und überträgt sie zusammen mit anderen ausgewählten Dateien in den /docs ordner von GitHub Pages.
 
 ## Beispiel
-Dieses Repository enthält selbst den Workflow für AutoDocs.
-[Hier](https://j0j0ha.github.io/AutoDocs/README.de) kannst du die automatisch generierte `.html`-Datei online sehen.
-[Hier](https://j0j0ha.github.io/AutoDocs/README.en) findest du auch die automatisch generierte `.html`-Datei der englischen Version.
+Dieses Repository enthält selbst den Workflow für AutoDocs.  
+[Hier](https://j0j0ha.github.io/AutoDocs/README.de) kannst du die automatisch generierte `.html`-Datei online sehen.  
+[Hier](https://j0j0ha.github.io/AutoDocs/README.en) findest du auch die automatisch generierte `.html`-Datei der englischen Version.  
 
 ## Setup
 * Kopiere die Ordner `/autodocs` und `/sources` und die Datei `/.github/workflows/AutoDocs.yml` in dein eigenes Repository.
