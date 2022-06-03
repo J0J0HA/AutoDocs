@@ -27,7 +27,7 @@ jobs:
           pip install pyyaml==6.0
           
       - name: execute py script
-        run: python autodocs/update_docs.py
+        run: python ./autodocs/update_docs.py
           
       - name: commit files
         run: |
