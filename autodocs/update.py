@@ -2,9 +2,13 @@ import gh_md_to_html.core_converter
 import requests
 import yaml
 import os
+import glob
 
-try: os.mkdir("../docs")
-except FileExistsError: pass
+try:
+    os.mkdir("../docs")
+except FileExistsError:
+    for file in glob.glob("../docs"):
+        os.remove(file)
 
 with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
