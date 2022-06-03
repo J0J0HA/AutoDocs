@@ -1,8 +1,13 @@
 :root {
   background-color:#1c1c1c;
-  color:#bfbfbf
+  color: #bfbfbf;
 }
 
 table, td, th {
-  border-color:#bfbfbf
+  border-color: #bfbfbf;
+}
+
+code, pre {
+  border-radius: 10px;
+  background-color: #3d3d3d;
 }
