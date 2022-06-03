@@ -1,4 +1,4 @@
-index: README.en.md
+index: README.md
 style:
   favicon: sources/favicon-96x96.png
   load:
@@ -13,4 +13,5 @@ folders:
 files:
   - README.md
   - README.de.md
+  - README.en.md
   - sources/**
