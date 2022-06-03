@@ -1,4 +1,4 @@
-/* Please don't change this file. To implements own js, use config!*/
+/* Please don't change this file. To implement custom js, use config!*/
 
 // themes
 var themes = {}
