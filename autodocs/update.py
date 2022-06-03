@@ -30,7 +30,8 @@ with open("config.yml", "r") as file:
 
 # configure default data etc.
 print("Constructing extras...")
-extra = ""
+extra = '<script src=".autodocs/script.js"></script><link rel="stylesheet" href=".autodocs/style.css" />'
+
 # -> include style
 if "style" in config:
     if "favicon" in config["style"]:
@@ -54,7 +55,7 @@ if "scripts" in config:
         extra += '<script src="' + link + '"></script>'
 
 # load template
-with open("template.html", "r") as file:
+with open("static/template.html", "r") as file:
     print("Loading template...")
     template = file.read()
 
@@ -62,6 +63,12 @@ with open("template.html", "r") as file:
 for folder in config["folders"]:
     print(f"Creating folder '{folder}'...")
     os.mkdir("../docs/" + folder)
+
+# implement internal files
+print(f"Creating folder '.autodocs'...")
+os.mkdir("../docs/.autodocs")
+os.system("copy 'static/script.js' '../docs/.autodocs/script.js'")
+os.system("copy 'static/style.css' '../docs/.autodocs/style.css'")
 
 # transfer files
 for path in config["files"]:
