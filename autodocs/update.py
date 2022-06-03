@@ -19,12 +19,11 @@ with open("template.html", "r") as file:
 
 for path in config["files"]:
     for filen in glob.glob("../" + path):
-        filen = filen.removeprefix("../")
         if filen.endswith(".md"):
             with open(filen, "r") as file:
                 raw = file.read()
             html = gh_md_to_html.core_converter.markdown(raw)
-            with open("../docs/" + filen.removesuffix(".md") + ".html", "w") as file:
+            with open("../docs/" + filen.removeprefix("../").removesuffix(".md") + ".html", "w") as file:
                 file.write(
                     template
                         .replace("%title%", filen)
@@ -33,7 +32,7 @@ for path in config["files"]:
         else:
             with open(filen, "rb") as file:
                 raw = file.read()
-            with open("../docs/" + filen, "wb") as file:
+            with open("../docs/" + filen.removeprefix("../"), "wb") as file:
                 file.write(raw)
              
 if "index" in config:
