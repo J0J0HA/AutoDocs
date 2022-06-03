@@ -30,7 +30,7 @@ with open("config.yml", "r") as file:
 
 # configure default data etc.
 print("Constructing extras...")
-extra = '<script src=".autodocs/script.js"></script><link rel="stylesheet" href=".autodocs/style.css" />'
+extra = ''
 
 # -> include style
 if "style" in config:
@@ -65,9 +65,9 @@ for folder in config["folders"]:
 
 # implement internal files
 print(f"Creating folder '.autodocs'...")
-os.mkdir("../docs/.autodocs")
-os.system("copy 'static/script.js' '../docs/.autodocs/script.js'")
-os.system("copy 'static/style.css' '../docs/.autodocs/style.css'")
+os.mkdir("../docs/_autodocs")
+os.system("copy 'static/script.js' '../docs/_autodocs/script.js'")
+os.system("copy 'static/style.css' '../docs/_autodocs/style.css'")
 
 # transfer files
 for path in config["files"]:
