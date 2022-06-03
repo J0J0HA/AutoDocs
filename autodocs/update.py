@@ -10,6 +10,7 @@ def emptydir(dir):
             os.remove(file)
         except IsADirectoryError:
             emptydir(file)
+            os.rmdir(file)
 
 try:
     os.mkdir("../docs")
