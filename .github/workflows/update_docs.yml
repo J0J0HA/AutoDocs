@@ -26,6 +26,9 @@ jobs:
           pip install mistune==2.0.0rc1
           pip install pyyaml==6.0
           
+      - name: test
+        run: la
+          
       - name: execute py script
         run: python ./autodocs/update_docs.py
           
