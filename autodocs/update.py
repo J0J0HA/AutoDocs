@@ -20,7 +20,7 @@ for file in config["files"]:
     if file.endswith(".md"):
         raw = requests.get("https://raw.githubusercontent.com/" + config["name"] + "/main/" + file).text
         html = gh_md_to_html.core_converter.markdown(raw)
-        with open("docs/" + file + ".html", "w") as file:
+        with open("../docs/" + file + ".html", "w") as file:
             file.write(
                 template
                     .replace("%title%", str(config["name"]) + "/" + str(file))
@@ -28,5 +28,5 @@ for file in config["files"]:
             )
     else:
         raw = requests.get("https://raw.githubusercontent.com/" + config["name"] + "/main/" + file).text
-        with open("docs/" + file, "w") as file:
+        with open("../docs/" + file, "w") as file:
             file.write(raw)
