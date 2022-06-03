@@ -17,8 +17,32 @@
 <a aria-hidden="true" class="anchor" href="#setup" id="setup"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
 <ul>
 <li>
-Kopiere den /autodocs ordner und die Datei /.github/workflows/auto_docs.yml in dein eigenes Repository.</li>
+Kopiere die Ordner /autodocs und /sources und die Datei /.github/workflows/AutoDocs.yml in dein eigenes Repository.</li>
+<li>
+Gehe in den Einstellungen deines Repositorys auf &quot;Pages&quot;, und wähle unter &quot;Source&quot; &quot;main&quot; und &quot;/docs&quot; aus. Klicke anschließend auf &quot;Save&quot;</li>
+<li>
+Gehe nun in den Order /autodocs und bearbeite config.yml (siehe &quot;Konfiguration&quot; unten)</li>
 </ul>
-
+<h2>
+<a aria-hidden="true" class="anchor" href="#konfiguration" id="konfiguration"><span aria-hidden="true" class="octicon octicon-link"></span></a>Konfiguration</h2>
+<p>config.yml:</p>
+<pre><code>index: README.md                               # The md file to be shown at /  (optional)
+style:                                         # Container for styling         (optional)
+  favicon: sources/favicon-96x96.png           # Link to the favicon           (optional)
+  load:                                        # list of css files to load     (optional)
+    - sources/style.css                        
+  themes:                                      # list of themes (name: link)   (optional)
+    dark: sources/themes/dark.css
+    light: sources/themes/light.css
+  default theme: dark                          # default theme                 (optional)
+folders:                                       # folders to create in docs     (required)
+  - sources                                    # IMPORTANT: Lower level folders first
+  - sources/themes
+files:                                         # files to be included in /docs (required)
+  - README.md                                  # You can use &quot;*&quot; for all files in the folder
+  - README.de.md                               # or &quot;**&quot; for all sub folders and the files
+  - README.en.md                               # tey conatin (recursive)
+  - sources/**
+</code></pre>
   </body>
 </html>
