@@ -2,7 +2,7 @@
 
 :root {
 	font-family: Robito, Arial, sans-serif, monospace;
-	line-height: 135%;
+	line-height: 135% !important;
 }
 
 table {
@@ -24,5 +24,5 @@ pre, code {
 	border-radius: 5px;
 	background-color: #b5b2b1;
 	padding: 2px;
-	line-height: 135%;
+	line-height: 135% !important;
 }
