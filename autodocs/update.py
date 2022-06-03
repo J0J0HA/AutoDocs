@@ -4,12 +4,17 @@ import yaml
 import os
 import glob
 
+def emptydir(dir):
+    for file in glob.glob(dir + "/*"):
+        try:
+            os.remove(file)
+        except IsADirectoryError:
+            emptydir(file)
 
 try:
     os.mkdir("../docs")
 except FileExistsError:
-    for file in glob.glob("../docs/*"):
-        os.remove(file)
+    emptydir("../docs")
 
 with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
