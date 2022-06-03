@@ -3,7 +3,7 @@ import requests
 import yaml
 import os
 
-try: os.mkdir("docs")
+try: os.mkdir("../docs")
 except FileExistsError: pass
 
 with open("config.yml", "r") as file:
