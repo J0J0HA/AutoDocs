@@ -32,10 +32,11 @@ if "style" in config:
         for link in config["style"]["load"]:
             extra += '<link rel="stylesheet" href="' + link + '" />'
     if "themes" in config["style"]:
-        extra += '<script src="https://files.jojojux.de/api/readme/script.js"></script>'
-        extra += '<script>set_themes(' + json.dumps(config["style"]["themes"]) + ')</script>'
+        extra += '<script src="https://files.jojojux.de/resources/autodocs/themes.js"></script>'
+        extra += '<script>themes = ' + json.dumps(config["style"]["themes"]) + ';</script>'
         if "default theme" in config["style"]:
-            extra += '<script>set_default_theme("' + config["style"]["default theme"] + '")</script>'
+            extra += '<script>default_theme = "' + config["style"]["default theme"] + '";</script>'
+        extra += '<script>apply_theme()</script>'
 
 # load template
 with open("template.html", "r") as file:
