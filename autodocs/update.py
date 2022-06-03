@@ -74,17 +74,16 @@ for path in config["files"]:
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
-        else:
-            # other files are stored directly in the docs folder
-            print(f"Tranferring '{filen}'...")
-            try:
-                with open(filen, "rb") as file:
-                    raw = file.read()
-                with open("../docs/" + filen.removeprefix("../"), "wb") as file:
-                    file.write(raw)
-            except IsADirectoryError:
-                print("-> Is a directory! Skipping...")
-                continue
+        # all files (also .md) are stored directly in the docs folder
+        print(f"Tranferring '{filen}'...")
+        try:
+            with open(filen, "rb") as file:
+                raw = file.read()
+            with open("../docs/" + filen.removeprefix("../"), "wb") as file:
+                file.write(raw)
+        except IsADirectoryError:
+            print("-> Is a directory! Skipping...")
+            continue
 
 # creating an optional index page
 if "index" in config:
