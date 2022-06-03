@@ -1,3 +1,4 @@
-name: Technik-Tueftler/TwitterBot
+index: README.md
 files:
   - README.md
+  - source/*
