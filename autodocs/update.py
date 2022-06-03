@@ -48,7 +48,7 @@ for folder in config["folders"]:
 
 # transfer files
 for path in config["files"]:
-    for filen in glob.glob("../" + path):
+    for filen in glob.glob("../" + path, recursive=True):
         if filen.endswith(".md"):
             # .md files get converted to html and saved in docs
             with open(filen, "r") as file:
@@ -63,10 +63,13 @@ for path in config["files"]:
                 )
         else:
             # other files are stored directly in the docs folder
-            with open(filen, "rb") as file:
-                raw = file.read()
-            with open("../docs/" + filen.removeprefix("../"), "wb") as file:
-                file.write(raw)
+            try:
+                with open(filen, "rb") as file:
+                    raw = file.read()
+                with open("../docs/" + filen.removeprefix("../"), "wb") as file:
+                    file.write(raw)
+            except IsADirectoryError:
+                continue
 
 # creating an optional index page
 if "index" in config:
