@@ -3,8 +3,8 @@ style:
   load:
     - sources/style.css
   themes:
-    dark: https://files.jojojux.de/api/readme/themes/dark.css
-    light: https://files.jojojux.de/api/readme/themes/light.css
+    dark: sources/themes/dark.css
+    light: sources/themes/light.css
   default theme: none
 folders:
   - sources
