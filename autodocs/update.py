@@ -56,7 +56,8 @@ for path in config["files"]:
             with open("../docs/" + filen.removeprefix("../").removesuffix(".md") + ".html", "w") as file:
                 file.write(
                     template
-                        .replace("%title%", filen)
+                        .replace("%title%", filen.removeprefix("../"))
+                        .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
         else:
@@ -75,5 +76,6 @@ if "index" in config:
         file.write(
             template
                 .replace("%title%", config["index"])
+                .replace("%extra%", extra)
                 .replace("%content%", html)
         )
