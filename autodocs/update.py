@@ -35,6 +35,7 @@ for folder in config["folders"]:
 for path in config["files"]:
     for filen in glob.glob("../" + path):
         if filen.endswith(".md"):
+            # .md files get converted to html and saved in docs
             with open(filen, "r") as file:
                 raw = file.read()
             html = gh_md_to_html.core_converter.markdown(raw)
@@ -45,11 +46,13 @@ for path in config["files"]:
                         .replace("%content%", html)
                 )
         else:
+            # other files are stored directly in the docs folder
             with open(filen, "rb") as file:
                 raw = file.read()
             with open("../docs/" + filen.removeprefix("../"), "wb") as file:
                 file.write(raw)
-             
+
+# creating an optional index page
 if "index" in config:
     with open("../" + config["index"], "r") as file:
         raw = file.read()
