@@ -1,7 +1,5 @@
-# test
-this repository contains a workflow to update a github page based on the README-files in the github repository.
+# AutoDocs
+This repository contains a workflow to update the contents of the /docs folder on every push.
 
-## Not done yet!
-in future, it should work like this: 
-in the main branch you have the README.md
-on push, it converts it to html and uploads it to the pages branch.
+## Setup
+Not availible yet.
