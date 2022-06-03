@@ -19,7 +19,7 @@ th {
 	text-align: left;
 }
 
-.footer {
-	color: #595959;
-	font-size: 10px;
+pre, code {
+	border-radius: 5px;
+	background-color: #888c89;
 }
