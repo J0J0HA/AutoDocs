@@ -4,6 +4,13 @@ import yaml
 import os
 import glob
 
+
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+
+
 try:
     os.mkdir("../docs")
 except FileExistsError:
@@ -18,6 +25,7 @@ with open("template.html", "r") as file:
 
 for path in config["files"]:
     for filen in glob.glob("../" + path):
+        filen = remove_prefix(filen, "../")
         if filen.endswith(".md"):
             with open(filen, "r") as file:
                 raw = file.read()
