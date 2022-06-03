@@ -7,7 +7,7 @@ import glob
 try:
     os.mkdir("../docs")
 except FileExistsError:
-    for file in glob.glob("../docs"):
+    for file in glob.glob("../docs/*"):
         os.remove(file)
 
 with open("config.yml", "r") as file:
