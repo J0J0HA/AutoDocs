@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+	font-family: Robito, Arial, sans-serif, monospace;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0px 0px;
+}
+
+td, th {
+	margin: 0px;
+	padding: 3px;
+	border: 1px solid black;
+}
+
+th {
+	text-align: left;
+}
+
+.footer {
+	color: #595959;
+	font-size: 10px;
+}
