@@ -23,6 +23,9 @@ th {
 pre, code {
 	border-radius: 5px;
 	background-color: #b5b2b1;
-	padding: 2px;
 	line-height: 135% !important;
+}
+
+code {
+	padding: 2px;
 }
