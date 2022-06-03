@@ -1,3 +1,5 @@
+/* Please don't change this file. To implement custom js, use config!*/
+
 // themes
 var themes = {}
 var default_theme = "none"
