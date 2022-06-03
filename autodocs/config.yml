@@ -8,6 +8,7 @@ style:
   default theme: dark
 folders:
   - sources
+  - sources/themes
 files:
   - README.md
   - README.de.md
