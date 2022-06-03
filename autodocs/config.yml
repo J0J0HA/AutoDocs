@@ -5,7 +5,7 @@ style:
   themes:
     dark: sources/themes/dark.css
     light: sources/themes/light.css
-  default theme: none
+  default theme: dark
 folders:
   - sources
 files:
