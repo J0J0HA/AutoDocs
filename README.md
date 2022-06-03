@@ -1,4 +1,4 @@
-[![Update Docs Folder Contents](https://github.com/J0J0HA/test/actions/workflows/update_docs.yml/badge.svg?branch=main&event=push)](https://github.com/J0J0HA/test/actions/workflows/update_docs.yml)
+[![pages-build-deployment](https://github.com/J0J0HA/test/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/J0J0HA/test/actions/workflows/pages/pages-build-deployment)
 
 # AutoDocs
 This repository contains a workflow to update the contents of the /docs folder on every push.
