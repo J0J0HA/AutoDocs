@@ -35,7 +35,7 @@ for path in config["files"]:
                 file.write(raw)
              
 if "index" in config:
-    with open(config["index"], "r") as file:
+    with open("../" + config["index"], "r") as file:
         raw = file.read()
     html = gh_md_to_html.core_converter.markdown(raw)
     with open("../docs/index.html", "w") as file:
