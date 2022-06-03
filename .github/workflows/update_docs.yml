@@ -12,11 +12,6 @@ jobs:
 
       - name: checkout repo content
         uses: actions/checkout@v2
-      
-      - name: test
-        run: |
-          cd autodocs
-          ls
 
       - name: setup python
         uses: actions/setup-python@v2
@@ -32,7 +27,7 @@ jobs:
           pip install pyyaml==6.0
           
       - name: execute py script
-        run: python ./autodocs/update_docs.py
+        run: python autodocs/update.py
           
       - name: commit files
         run: |
