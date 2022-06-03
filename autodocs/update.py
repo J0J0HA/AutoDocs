@@ -5,6 +5,7 @@ import os
 import glob
 
 def emptydir(dir):
+    "Deletes the contents of a directory."
     for file in glob.glob(dir + "/*"):
         try:
             os.remove(file)
@@ -12,20 +13,25 @@ def emptydir(dir):
             emptydir(file)
             os.rmdir(file)
 
+# Ensure empty docs folder
 try:
     os.mkdir("../docs")
 except FileExistsError:
     emptydir("../docs")
 
+# load config
 with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
 
+# load template
 with open("template.html", "r") as file:
     template = file.read()
-    
+
+# create required folders
 for folder in config["folders"]:
     os.mkdir("../docs/" + folder)
 
+# transfer files
 for path in config["files"]:
     for filen in glob.glob("../" + path):
         if filen.endswith(".md"):
