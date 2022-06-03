@@ -41,3 +41,10 @@ files:                                         # files to be included in /docs  
 
 Datei `template.html`:
 > Diese Datei wird als Grundlage für die einzelnen Seiten genutzt. %extra% ist der generierte Zusatz durch `style` in der `config.yml`, %title% ist der Dateipfad und %content% ist der generierte HTML-Code selbst.
+
+## Themes
+Themes können durch Anfügen von `?theme=<name>` an die URL angefügt werden.  
+Beispiele:
+* [Dark Theme](?theme=dark)
+* [Light Theme](?theme=light)
+* [No Theme](?theme=none)
