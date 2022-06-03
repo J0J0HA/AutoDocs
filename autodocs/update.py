@@ -35,6 +35,12 @@ for path in config["files"]:
                 file.write(raw)
              
 if "index" in config:
-    with open("../docs/index.html", "w") as outfile:
-        with open("../docs/" + config["index"] + ".html", "r") as infile:
-            outfile.write(infile.read())
+    with open(config["index"], "r") as file:
+        raw = file.read()
+    html = gh_md_to_html.core_converter.markdown(raw)
+    with open("../docs/index.html", "w") as file:
+        file.write(
+            template
+                .replace("%title%", filen)
+                .replace("%content%", html)
+        )
