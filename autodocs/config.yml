@@ -1,4 +1,6 @@
 index: README.md
+folders:
+  - sources
 files:
   - README.md
   - README.de.md
