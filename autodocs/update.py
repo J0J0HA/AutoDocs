@@ -35,7 +35,7 @@ extra = ""
 if "style" in config:
     if "favicon" in config["style"]:
         print("Implementing favicon...")
-        extra += '<link rel="favicon" href="' + config["style"]["favicon"] + '" />'
+        extra += '<link rel="icon" href="' + config["style"]["favicon"] + '" />'
     if "load" in config["style"]:
         print("Implementing CSS files...")
         for link in config["style"]["load"]:
