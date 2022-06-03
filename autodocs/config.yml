@@ -1,4 +1,6 @@
 index: README.md
+scripts:
+  - sources/script.js
 style:
   favicon: sources/favicon-96x96.png
   load:
