@@ -8,7 +8,8 @@ Dieses Repository enthält selbst den Workflow für AutoDocs.
 [Hier](https://j0j0ha.github.io/AutoDocs/README.en) findest du auch die automatisch generierte `.html`-Datei der englischen Version.  
 
 ## Setup
-* Kopiere die Ordner `/autodocs` und `/sources` und die Datei `/.github/workflows/AutoDocs.yml` in dein eigenes Repository.
+* Kopiere die Ordner `/autodocs` und `/sources` und die Datei `/.github/workflows/AutoDocs.yml` in dein eigenes Repository.  
+  -> Alternativ kannst du das Template `J0J0HA/AutoDocsTemplate` beim erstellen nutzen.
 * Gehe in den Einstellungen deines Repositorys auf "Pages", und wähle unter "Source" "main" und "/docs" aus. Klicke anschließend auf "Save"
 * Gehe nun in den Order `/autodocs` und bearbeite `config.yml` (siehe "Konfiguration" unten)
 * Anschließend werden die Dateien unter `files:` in den (neu erstellten) Ordner /docs kopiert. `.md`-Dateien werden einmal als `.html`, einmal als `.md` gespeichert, falls du beabsichtigst, eine `.md`-Datei zum Download anzubieten (oder so).
