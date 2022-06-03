@@ -43,7 +43,6 @@ if "style" in config:
             extra += '<link rel="stylesheet" href="' + link + '" />'
     if "themes" in config["style"]:
         print("Implementing themes...")
-        extra += '<script src="https://files.jojojux.de/resources/autodocs/themes.js"></script>'
         extra += '<script>themes = ' + json.dumps(config["style"]["themes"]) + ';</script>'
         if "default theme" in config["style"]:
             extra += '<script>default_theme = "' + config["style"]["default theme"] + '";</script>'
