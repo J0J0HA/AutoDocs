@@ -27,7 +27,7 @@ jobs:
           pip install pyyaml==6.0
           
       - name: execute py script
-        run: python ../pages/update_docs.py
+        run: python autodocs/update_docs.py
           
       - name: commit files
         run: |
@@ -40,4 +40,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: pages
+          branch: main
