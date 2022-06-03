@@ -12,7 +12,7 @@ Dieses Repository enthält selbst den Workflow für AutoDocs.
 * Gehe in den Einstellungen deines Repositorys auf "Pages", und wähle unter "Source" "main" und "/docs" aus. Klicke anschließend auf "Save"
 * Gehe nun in den Order `/autodocs` und bearbeite `config.yml` (siehe "Konfiguration" unten)
 * Anschließend werden die Dateien unter `files:` in den (neu erstellten) Ordner /docs kopiert. `.md`-Dateien werden einmal als `.html`, einmal als `.md` gespeichert, falls du beabsichtigst, eine `.md`-Datei zum Download anzubieten (oder so).
-* Durch den push sollte sich die GitHub Page von selbst anpassen. (evtl. Musst du den Cache deinen Browsers löschen und einige Minuten warten.
+* Durch den push sollte sich die GitHub Page von selbst anpassen. (evtl. Musst du den Cache deinen Browsers löschen und einige Minuten warten.)
 
 ## Konfiguration
 Datei `config.yml`:
