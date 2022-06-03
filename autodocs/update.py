@@ -51,6 +51,6 @@ if "index" in config:
     with open("../docs/index.html", "w") as file:
         file.write(
             template
-                .replace("%title%", filen)
+                .replace("%title%", config["index"])
                 .replace("%content%", html)
         )
