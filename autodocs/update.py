@@ -16,6 +16,9 @@ with open("config.yml", "r") as file:
 
 with open("template.html", "r") as file:
     template = file.read()
+    
+for folder in config["folders"]:
+    os.mkdir("../" + folder)
 
 for path in config["files"]:
     for filen in glob.glob("../" + path):
