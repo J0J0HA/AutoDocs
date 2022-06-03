@@ -20,7 +20,8 @@ jobs:
           
       - name: Install Python modules
         run: |
-          python -m pip -r autodocs/requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r autodocs/requirements.txt
           
       - name: Run Python script
         run: |
