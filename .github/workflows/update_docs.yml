@@ -12,6 +12,9 @@ jobs:
 
       - name: checkout repo content
         uses: actions/checkout@v2
+      
+      - name: test
+        run: ls
 
       - name: setup python
         uses: actions/setup-python@v2
@@ -25,9 +28,6 @@ jobs:
           pip install pygments==2.12.0
           pip install mistune==2.0.0rc1
           pip install pyyaml==6.0
-          
-      - name: test
-        run: la
           
       - name: execute py script
         run: python ./autodocs/update_docs.py
