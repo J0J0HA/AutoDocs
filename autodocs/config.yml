@@ -1,7 +1,7 @@
 index: README.md
 style:
   load:
-    - https://files.jojojux.de/api/readme/style.css
+    - sources/style.css
   themes:
     dark: https://files.jojojux.de/api/readme/themes/dark.css
     light: https://files.jojojux.de/api/readme/themes/light.css
