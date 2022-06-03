@@ -3,6 +3,7 @@ import requests
 import yaml
 import os
 import glob
+import json
 
 def emptydir(dir):
     "Deletes the contents of a directory."
@@ -22,6 +23,17 @@ except FileExistsError:
 # load config
 with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
+
+# configure default data etc.
+extra = ""
+# -> include style
+if "style" in config:
+    extra += '<link rel="stylesheet" href="' + config["style"]["load"] + '" />'
+    if "themes" in config["style"]:
+        extra += '<script src="https://files.jojojux.de/api/readme/script.js"></script>'
+        extra += '<script>set_themes(' + json.dumps(config["style"]["themes"]) + ')</script>'
+        if "default theme" in config["style"]:
+            extra += '<script>set_default_theme("' + config["style"]["default theme"] + '")</script>'
 
 # load template
 with open("template.html", "r") as file:
