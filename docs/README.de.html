@@ -50,10 +50,8 @@ folders:                                       # folders to create in docs      
   - sources                                    # IMPORTANT: Lower level folders first
   - sources/themes
 files:                                         # files to be included in /docs   (required)
-  - README.md                                  # You can use &quot;*&quot; for all files in the folder
-  - README.de.md                               # or &quot;**&quot; for all sub folders and the files
-  - README.en.md                               # tey conatin (recursive)
-  - sources/**
+  - README.md                                  # You can use &quot;*&quot; for all files in the folder or &quot;**&quot; for
+  - sources/**                                 # all sub folders and the files they conatain (recursive)
 </code></pre><p>Datei <code>template.html</code>:</p>
 <blockquote>
 <p>Diese Datei wird als Grundlage für die einzelnen Seiten genutzt. %extra% ist der generierte Zusatz durch <code>style</code> in der <code>config.yml</code>, %title% ist der Dateipfad und %content% ist der generierte HTML-Code selbst.</p>

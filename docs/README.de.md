@@ -33,10 +33,8 @@ folders:                                       # folders to create in docs      
   - sources                                    # IMPORTANT: Lower level folders first
   - sources/themes
 files:                                         # files to be included in /docs   (required)
-  - README.md                                  # You can use "*" for all files in the folder
-  - README.de.md                               # or "**" for all sub folders and the files
-  - README.en.md                               # tey conatin (recursive)
-  - sources/**
+  - README.md                                  # You can use "*" for all files in the folder or "**" for
+  - sources/**                                 # all sub folders and the files they conatain (recursive)
 ```
 
 Datei `template.html`:
