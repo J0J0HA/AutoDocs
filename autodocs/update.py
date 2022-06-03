@@ -48,6 +48,11 @@ if "style" in config:
             extra += '<script>default_theme = "' + config["style"]["default theme"] + '";</script>'
         extra += '<script>apply_theme()</script>'
 
+# -> include scripts
+if "scripts" in config:
+    for link in config["scripts"]:
+        extra += '<script src="' + link + '"></script>'
+
 # load template
 with open("template.html", "r") as file:
     print("Loading template...")
