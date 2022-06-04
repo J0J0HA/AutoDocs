@@ -3,7 +3,7 @@ include:
   original-markdown: true
 style:
   favicon: sources/favicon-96x96.png
-  themes:
+  extra-themes:
     dark: sources/themes/dark.css
     light: sources/themes/light.css
   default-theme: dark
