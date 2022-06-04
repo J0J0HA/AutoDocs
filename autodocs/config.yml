@@ -1,7 +1,5 @@
 index: README.md
 include:
-  standard-styles: true
-  standard-scripts: true
   original-markdown: true
 style:
   favicon: sources/favicon-96x96.png
