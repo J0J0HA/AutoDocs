@@ -46,12 +46,21 @@ if "style" in config:
         print("Implementing CSS files...")
         for link in config["style"]["load"]:
             extra += '<link rel="stylesheet" href="' + link + '" />'
-    if "themes" in config["style"]:
-        print("Implementing themes...")
-        extra += '<script>themes = ' + json.dumps(config["style"]["themes"]) + ';</script>'
-        if "default-theme" in config["style"]:
-            extra += '<script>default_theme = "' + config["style"]["default-theme"] + '";</script>'
-        extra += '<script>apply_theme()</script>'
+    themes = {}
+    print("Implementing themes...")
+    for theme in glob.glob("themes/*.css"):
+        name = theme.removeprefix("themes/").removesuffix(".css")
+        path = ":" + theme
+        themes[name] = path
+        os.system(f"cp '{theme}' '../docs/:themes/{theme}'")
+        print(f"Found theme '{name}' at '/autodocs/{theme}' to be saved at '/docs/:themes/{theme}'")
+    if "extra-themes" in config["style"]:
+        print("Implementing extra-themes...")
+        themes.update(config["style"]["extra-themes"])
+    extra += '<script>themes = ' + json.dumps(themes) + '</script>'
+    if "default-theme" in config["style"]:
+        extra += '<script>default_theme = "' + config["style"]["default-theme"] + '"</script>'
+    extra += '<script>apply_theme()</script>'
 
         
 # -> include scripts
