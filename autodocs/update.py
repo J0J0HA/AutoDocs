@@ -8,21 +8,22 @@ import json
 
 def emptydir(dir):
     "Deletes the contents of a directory."
-    print(f"Clearing folder '{dir}'...")
+    print(f" -> Clearing folder '{dir}'...")
     for file in glob.glob(dir + "/*"):
         try:
             os.remove(file)
         except IsADirectoryError:
             emptydir(file)
+            print(f" -> Deleting folder '{dir}'...")
             os.rmdir(file)
 
             
 # Ensure empty docs folder
 try:
-    print("Creating folder '../docs'...")
+    print(" -> Creating folder '../docs'...")
     os.mkdir("../docs")
 except FileExistsError:
-    print("Folder '../docs' is already existing!")
+    print(" -> Folder '../docs' is already existing!")
     emptydir("../docs")
 
     
@@ -33,78 +34,77 @@ with open("config.yml", "r") as file:
 
     
 # configure default data etc.
-print("Constructing extras...")
+print(" -> Implementing additional features...")
 extra = ''
-
 
 # -> include style
 if "style" in config:
     if "favicon" in config["style"]:
-        print("Implementing favicon...")
+        print(f" -> Favicon {config["style"]["favicon"]} implemented.")
         extra += '<link rel="icon" href="' + config["style"]["favicon"] + '" />'
     if "load" in config["style"]:
-        print("Implementing CSS files...")
         for link in config["style"]["load"]:
+            print(f" -> CSS-file {link} implemented.")
             extra += '<link rel="stylesheet" href="' + link + '" />'
     themes = {}
-    print("Implementing themes...")
     for theme in glob.glob("themes/*.css"):
         name = theme.removeprefix("themes/").removesuffix(".css")
         path = ":" + theme
         themes[name] = path
         os.system(f"cp '{theme}' '../docs/:themes/{theme}'")
-        print(f"Found theme '{name}' at '/autodocs/{theme}' to be saved at '/docs/:themes/{theme}'")
+        print(f" -> Custom theme '{name}' at '/autodocs/{theme}' implemented. (at: '/docs/:themes/{theme}')")
     if "extra-themes" in config["style"]:
-        print("Implementing extra-themes...")
         themes.update(config["style"]["extra-themes"])
-    extra += '<script>themes = ' + json.dumps(themes) + '</script>'
+        print(" -> Extra themes implemented.
+    extra += '<script>/*THEMES*/themes = ' + json.dumps(themes) + '</script>'
     if "default-theme" in config["style"]:
-        extra += '<script>default_theme = "' + config["style"]["default-theme"] + '"</script>'
-    extra += '<script>apply_theme()</script>'
+        extra += '<script>/*DEFAULT THEME*/default_theme = "' + config["style"]["default-theme"] + '"</script>'
+    extra += '<script>/*APPLY*/apply_theme()</script>'
 
         
 # -> include scripts
 if "scripts" in config:
     for link in config["scripts"]:
         extra += '<script src="' + link + '"></script>'
+        print(f" -> JS-file {link} implemented.")
 
         
 # load template
 with open("static/template.html", "r") as file:
-    print("Loading template...")
     template = file.read()
+    print(" -> Template loaded.")
 
     
 # create required folders
 for folder in config["folders"]:
-    print(f"Creating folder '{folder}'...")
     os.mkdir("../docs/" + folder)
+    print(f" -> Created additional folder '{folder}'.")
 
 if config["include"]["original-markdown"] is True:
-    print(f"Creating folder ':markdown'...")
     os.mkdir("../docs/:markdown")
+    print(f" -> Created additional folder ':markdown'.")
     for folder in config["folders"]:
-        print(f"Creating folder ':markdown/{folder}'...")
         os.mkdir("../docs/:markdown/" + folder)
+        print(f" -> Created additional folder ':markdown/{folder}'.")
 
     
 # implement internal files
-print(f"Creating folder ':autodocs'...")
 os.mkdir("../docs/:autodocs")
-print(f"Building folder ':autodocs'...")
+print(f" -> Created internal folder ':autodocs'.")
 os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
 os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
+print(f" -> Created folder contents ':autodocs'.")
 
 
 # transfer files
 for path in config["files"]:
     for filen in glob.glob("../" + path, recursive=True):
         if filen.endswith(".md"):
-            print(f"Converting '{filen}'...")
             # .md files get converted to html and saved in /docs
             with open(filen, "r") as file:
                 raw = file.read()
             html = gh_md_to_html.core_converter.markdown(raw)
+            print(f" -> Converted '{filen}'.")
             with open("../docs/" + filen.removeprefix("../") + ".html", "w") as file:
                 file.write(
                     template
@@ -112,28 +112,31 @@ for path in config["files"]:
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
+            print(f" -> Saved converted '{filen.removeprefix("../")}' at '{filen.removeprefix("../") + ".html"}'.")
             # write original file in :markdown
-            with open("../docs/:markdown/" + filen.removeprefix("../"), "w") as file:
-                file.write(raw)
+            if config["include"]["original-markdown"] is True:
+                with open("../docs/:markdown/" + filen.removeprefix("../"), "w") as file:
+                    file.write(raw)
+                print(f" -> Saved original '{filen.removeprefix("..")}' at '/docs/:markdown/{filen.removeprefix("../")}'.")
         else:
             # other files are tranferred directly to /docs
-            print(f"Tranferring '{filen}'...")
             try:
                 with open(filen, "rb") as file:
                     raw = file.read()
                 with open("../docs/" + filen.removeprefix("../"), "wb") as file:
                     file.write(raw)
+                print(f" -> Saved original '{filen.removeprefix("..")}' at '/docs/:markdown/{filen.removeprefix("../")}'.")
             except IsADirectoryError:
-                print("-> Is a directory! Skipping...")
+                print("-> '{filen.removeprefix("..")}' is a directory! Skipping transfer...")
                 continue
 
                 
 # creating an optional index page
 if "index" in config:
-    print("Constucting index.html...")
     with open("../" + config["index"], "r") as file:
         raw = file.read()
     html = gh_md_to_html.core_converter.markdown(raw)
+    print(f" -> Converted '{config["index"]}'.")
     with open("../docs/index.html", "w") as file:
         file.write(
             template
@@ -141,3 +144,4 @@ if "index" in config:
                 .replace("%extra%", extra)
                 .replace("%content%", html)
         )
+    print(f" -> Saved converted '{config["index"]}' at '/docs/index.html'.")
