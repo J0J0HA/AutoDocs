@@ -40,7 +40,7 @@ extra = ''
 # -> include style
 if "style" in config:
     if "favicon" in config["style"]:
-        print(f" -> Favicon {config["style"]["favicon"]} implemented.")
+        print(f" -> Favicon '{config['style']['favicon']}' implemented.")
         extra += '<link rel="icon" href="' + config["style"]["favicon"] + '" />'
     if "load" in config["style"]:
         for link in config["style"]["load"]:
@@ -90,10 +90,10 @@ if config["include"]["original-markdown"] is True:
     
 # implement internal files
 os.mkdir("../docs/:autodocs")
-print(f" -> Created internal folder ':autodocs'.")
+print(f" -> Created internal folder '/docs/:autodocs'.")
 os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
 os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
-print(f" -> Created folder contents ':autodocs'.")
+print(f" -> Created folder contents '/dosc/:autodocs'.")
 
 
 # transfer files
@@ -112,12 +112,12 @@ for path in config["files"]:
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
-            print(f" -> Saved converted '{filen.removeprefix("../")}' at '{filen.removeprefix("../") + ".html"}'.")
+            print(f" -> Saved converted '{filen.removeprefix('../')}' at '{filen.removeprefix('../') + '.html'}'.")
             # write original file in :markdown
             if config["include"]["original-markdown"] is True:
                 with open("../docs/:markdown/" + filen.removeprefix("../"), "w") as file:
                     file.write(raw)
-                print(f" -> Saved original '{filen.removeprefix("..")}' at '/docs/:markdown/{filen.removeprefix("../")}'.")
+                print(f" -> Saved original '{filen.removeprefix('..')}' at '/docs/:markdown/{filen.removeprefix('../')}'.")
         else:
             # other files are tranferred directly to /docs
             try:
@@ -125,9 +125,9 @@ for path in config["files"]:
                     raw = file.read()
                 with open("../docs/" + filen.removeprefix("../"), "wb") as file:
                     file.write(raw)
-                print(f" -> Saved original '{filen.removeprefix("..")}' at '/docs/:markdown/{filen.removeprefix("../")}'.")
+                print(f" -> Saved original '{filen.removeprefix('..')}' at '/docs/:markdown/{filen.removeprefix('../')}'.")
             except IsADirectoryError:
-                print("-> '{filen.removeprefix("..")}' is a directory! Skipping transfer...")
+                print(f"-> '{filen.removeprefix('..')}' is a directory! Skipping transfer...")
                 continue
 
                 
@@ -136,7 +136,7 @@ if "index" in config:
     with open("../" + config["index"], "r") as file:
         raw = file.read()
     html = gh_md_to_html.core_converter.markdown(raw)
-    print(f" -> Converted '{config["index"]}'.")
+    print(f" -> Converted '{config['index']}'.")
     with open("../docs/index.html", "w") as file:
         file.write(
             template
@@ -144,4 +144,4 @@ if "index" in config:
                 .replace("%extra%", extra)
                 .replace("%content%", html)
         )
-    print(f" -> Saved converted '{config["index"]}' at '/docs/index.html'.")
+    print(f" -> Saved converted '{config['index']}' at '/docs/index.html'.")
