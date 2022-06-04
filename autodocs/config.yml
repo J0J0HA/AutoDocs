@@ -4,7 +4,6 @@ include:
 style:
   favicon: sources/favicon-96x96.png
   extra-themes:
-    dark: sources/themes/dark.css
     light: sources/themes/light.css
   default-theme: dark
 folders:
