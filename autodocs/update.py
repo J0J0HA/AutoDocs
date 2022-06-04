@@ -49,7 +49,7 @@ if "style" in config:
     if "themes" in config["style"]:
         print("Implementing themes...")
         extra += '<script>themes = ' + json.dumps(config["style"]["themes"]) + ';</script>'
-        if "default theme" in config["style"]:
+        if "default-theme" in config["style"]:
             extra += '<script>default_theme = "' + config["style"]["default theme"] + '";</script>'
         extra += '<script>apply_theme()</script>'
 
