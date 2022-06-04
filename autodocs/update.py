@@ -5,6 +5,7 @@ import os
 import glob
 import json
 
+
 def emptydir(dir):
     "Deletes the contents of a directory."
     print(f"Clearing folder '{dir}'...")
@@ -15,6 +16,7 @@ def emptydir(dir):
             emptydir(file)
             os.rmdir(file)
 
+            
 # Ensure empty docs folder
 try:
     print("Creating folder '../docs'...")
@@ -23,14 +25,17 @@ except FileExistsError:
     print("Folder '../docs' is already existing!")
     emptydir("../docs")
 
+    
 # load config
 with open("config.yml", "r") as file:
     print("Loading config...")
     config = yaml.safe_load(file)
 
+    
 # configure default data etc.
 print("Constructing extras...")
 extra = ''
+
 
 # -> include style
 if "style" in config:
@@ -48,32 +53,39 @@ if "style" in config:
             extra += '<script>default_theme = "' + config["style"]["default theme"] + '";</script>'
         extra += '<script>apply_theme()</script>'
 
+        
 # -> include scripts
 if "scripts" in config:
     for link in config["scripts"]:
         extra += '<script src="' + link + '"></script>'
 
+        
 # load template
 with open("static/template.html", "r") as file:
     print("Loading template...")
     template = file.read()
 
-
-print(f"Creating folder ':markdown'...")
-os.mkdir("../docs/:markdown")
-
+    
 # create required folders
 for folder in config["folders"]:
     print(f"Creating folder '{folder}'...")
     os.mkdir("../docs/" + folder)
-    os.mkdir("../docs/:markdown/" + folder)
 
+if config["include"]["original-markdown"] is True:
+    print(f"Creating folder ':markdown'...")
+    os.mkdir("../docs/:markdown")
+    for folder in config["folders"]:
+        print(f"Creating folder ':markdown/{folder}'...")
+        os.mkdir("../docs/:markdown/" + folder)
+
+    
 # implement internal files
 print(f"Creating folder ':autodocs'...")
 os.mkdir("../docs/:autodocs")
 print(f"Building folder ':autodocs'...")
 os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
 os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
+
 
 # transfer files
 for path in config["files"]:
@@ -106,6 +118,7 @@ for path in config["files"]:
                 print("-> Is a directory! Skipping...")
                 continue
 
+                
 # creating an optional index page
 if "index" in config:
     print("Constucting index.html...")
