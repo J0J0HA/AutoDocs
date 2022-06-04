@@ -55,7 +55,7 @@ if "style" in config:
         print(f" -> Custom theme '{name}' at '/autodocs/{theme}' implemented. (at: '/docs/:themes/{theme}')")
     if "extra-themes" in config["style"]:
         themes.update(config["style"]["extra-themes"])
-        print(" -> Extra themes implemented.
+        print(" -> Extra themes implemented.")
     extra += '<script>/*THEMES*/themes = ' + json.dumps(themes) + '</script>'
     if "default-theme" in config["style"]:
         extra += '<script>/*DEFAULT THEME*/default_theme = "' + config["style"]["default-theme"] + '"</script>'
