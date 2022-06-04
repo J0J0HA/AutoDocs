@@ -1,10 +1,14 @@
 index: README.md
+include:
+  standard-styles: true
+  standard-scripts: true
+  original-markdown: true
 style:
   favicon: sources/favicon-96x96.png
   themes:
     dark: sources/themes/dark.css
     light: sources/themes/light.css
-  default theme: dark
+  default-theme: dark
 folders:
   - sources
   - sources/themes
