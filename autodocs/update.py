@@ -51,8 +51,8 @@ if "style" in config:
         name = theme.removeprefix("themes/").removesuffix(".css")
         path = ":" + theme
         themes[name] = path
-        os.system(f"cp '{theme}' '../docs/:themes/{path}'")
-        print(f" -> Custom theme '{name}' at '{theme}' implemented. (at: '../docs/:themes/{path}')")
+        os.system(f"cp '{theme}' '../docs/{path}'")
+        print(f" -> Custom theme '{name}' at '{theme}' implemented. (at: '../docs/{path}')")
     if "extra-themes" in config["style"]:
         themes.update(config["style"]["extra-themes"])
         print(" -> Extra themes implemented.")
