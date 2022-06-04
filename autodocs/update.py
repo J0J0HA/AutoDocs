@@ -29,8 +29,8 @@ except FileExistsError:
     
 # load config
 with open("config.yml", "r") as file:
-    print("Loading config...")
     config = yaml.safe_load(file)
+    print(" -> Loaded config from 'config.yml'...")
 
     
 # configure default data etc.
@@ -51,8 +51,8 @@ if "style" in config:
         name = theme.removeprefix("themes/").removesuffix(".css")
         path = ":" + theme
         themes[name] = path
-        os.system(f"cp '{theme}' '../docs/:themes/{theme}'")
-        print(f" -> Custom theme '{name}' at '/autodocs/{theme}' implemented. (at: '/docs/:themes/{theme}')")
+        os.system(f"cp '{theme}' '../docs/:themes/{path}'")
+        print(f" -> Custom theme '{name}' at '{theme}' implemented. (at: '../docs/:themes/{path}')")
     if "extra-themes" in config["style"]:
         themes.update(config["style"]["extra-themes"])
         print(" -> Extra themes implemented.")
@@ -82,18 +82,18 @@ for folder in config["folders"]:
 
 if config["include"]["original-markdown"] is True:
     os.mkdir("../docs/:markdown")
-    print(f" -> Created additional folder ':markdown'.")
+    print(f" -> Created additional folder '../docs/:markdown'.")
     for folder in config["folders"]:
         os.mkdir("../docs/:markdown/" + folder)
-        print(f" -> Created additional folder ':markdown/{folder}'.")
+        print(f" -> Created additional folder '../docs/:markdown/{folder}'.")
 
     
 # implement internal files
 os.mkdir("../docs/:autodocs")
-print(f" -> Created internal folder '/docs/:autodocs'.")
+print(f" -> Created internal folder '../docs/:autodocs'.")
 os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
 os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
-print(f" -> Created folder contents '/dosc/:autodocs'.")
+print(f" -> Created folder contents '../docs/:autodocs'.")
 
 
 # transfer files
@@ -112,12 +112,12 @@ for path in config["files"]:
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
-            print(f" -> Saved converted '{filen.removeprefix('../')}' at '{filen.removeprefix('../') + '.html'}'.")
+            print(f" -> Saved converted '{filen}' at '../docs/{filen.removeprefix('../') + '.html'}'.")
             # write original file in :markdown
             if config["include"]["original-markdown"] is True:
                 with open("../docs/:markdown/" + filen.removeprefix("../"), "w") as file:
                     file.write(raw)
-                print(f" -> Saved original '{filen.removeprefix('..')}' at '/docs/:markdown/{filen.removeprefix('../')}'.")
+                print(f" -> Saved original '{filen}' at '../docs/:markdown/{filen.removeprefix('../')}'.")
         else:
             # other files are tranferred directly to /docs
             try:
@@ -125,9 +125,9 @@ for path in config["files"]:
                     raw = file.read()
                 with open("../docs/" + filen.removeprefix("../"), "wb") as file:
                     file.write(raw)
-                print(f" -> Saved original '{filen.removeprefix('..')}' at '/docs/:markdown/{filen.removeprefix('../')}'.")
+                print(f" -> Saved original '{filen}' at '../docs/:markdown/{filen.removeprefix('../')}'.")
             except IsADirectoryError:
-                print(f"-> '{filen.removeprefix('..')}' is a directory! Skipping transfer...")
+                print(f" -> '{filen}' is a directory! Skipping transfer...")
                 continue
 
                 
@@ -144,4 +144,4 @@ if "index" in config:
                 .replace("%extra%", extra)
                 .replace("%content%", html)
         )
-    print(f" -> Saved converted '{config['index']}' at '/docs/index.html'.")
+    print(f" -> Saved converted '{config['index']}' at '../docs/index.html'.")
