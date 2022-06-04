@@ -74,27 +74,28 @@ for path in config["files"]:
     for filen in glob.glob("../" + path, recursive=True):
         if filen.endswith(".md"):
             print(f"Converting '{filen}'...")
-            # .md files get converted to html and saved in docs
+            # .md files get converted to html and saved in /docs
             with open(filen, "r") as file:
                 raw = file.read()
             html = gh_md_to_html.core_converter.markdown(raw)
-            with open("../docs/" + filen.removeprefix("../").removesuffix(".md") + ".html", "w") as file:
+            with open("../docs/" + filen.removeprefix("../") + ".html", "w") as file:
                 file.write(
                     template
                         .replace("%title%", filen.removeprefix("../"))
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
-        # all files (also .md) are stored directly in the docs folder
-        print(f"Tranferring '{filen}'...")
-        try:
-            with open(filen, "rb") as file:
-                raw = file.read()
-            with open("../docs/" + filen.removeprefix("../"), "wb") as file:
-                file.write(raw)
-        except IsADirectoryError:
-            print("-> Is a directory! Skipping...")
-            continue
+        else:
+            # other files are tranferred directly to /docs
+            print(f"Tranferring '{filen}'...")
+            try:
+                with open(filen, "rb") as file:
+                    raw = file.read()
+                with open("../docs/" + filen.removeprefix("../"), "wb") as file:
+                    file.write(raw)
+            except IsADirectoryError:
+                print("-> Is a directory! Skipping...")
+                continue
 
 # creating an optional index page
 if "index" in config:
