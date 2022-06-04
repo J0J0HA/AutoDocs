@@ -32,10 +32,34 @@ with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
     print(" -> Loaded config from 'config.yml'...")
 
-    
+
+# create required folders
+for folder in config["folders"]:
+    os.mkdir("../docs/" + folder)
+    print(f" -> Created additional folder '{folder}'.")
+
+if config["include"]["original-markdown"] is True:
+    os.mkdir("../docs/:markdown")
+    print(f" -> Created additional folder '../docs/:markdown'.")
+    for folder in config["folders"]:
+        os.mkdir("../docs/:markdown/" + folder)
+        print(f" -> Created additional folder '../docs/:markdown/{folder}'.")
 # configure default data etc.
 print(" -> Implementing additional features...")
 extra = ''
+
+
+# implement internal files
+os.mkdir("../docs/:autodocs")
+print(f" -> Created internal folder '../docs/:autodocs'.")
+os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
+os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
+print(f" -> Created folder contents '../docs/:autodocs'.")
+
+
+# add themes folder
+os.mkdir("../docs/:themes")
+
 
 # -> include style
 if "style" in config:
@@ -49,9 +73,9 @@ if "style" in config:
     themes = {}
     for theme in glob.glob("themes/*.css"):
         name = theme.removeprefix("themes/").removesuffix(".css")
-        path = ":" + theme
+        path = "../docs/:" + theme
         themes[name] = path
-        os.system(f"cp '{theme}' '../docs/{path}'")
+        os.system(f"cp '{theme}' '{path}'")
         print(f" -> Custom theme '{name}' at '{theme}' implemented. (at: '../docs/{path}')")
     if "extra-themes" in config["style"]:
         themes.update(config["style"]["extra-themes"])
@@ -75,27 +99,6 @@ with open("static/template.html", "r") as file:
     print(" -> Template loaded.")
 
     
-# create required folders
-for folder in config["folders"]:
-    os.mkdir("../docs/" + folder)
-    print(f" -> Created additional folder '{folder}'.")
-
-if config["include"]["original-markdown"] is True:
-    os.mkdir("../docs/:markdown")
-    print(f" -> Created additional folder '../docs/:markdown'.")
-    for folder in config["folders"]:
-        os.mkdir("../docs/:markdown/" + folder)
-        print(f" -> Created additional folder '../docs/:markdown/{folder}'.")
-
-    
-# implement internal files
-os.mkdir("../docs/:autodocs")
-print(f" -> Created internal folder '../docs/:autodocs'.")
-os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
-os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
-print(f" -> Created folder contents '../docs/:autodocs'.")
-
-
 # transfer files
 for path in config["files"]:
     for filen in glob.glob("../" + path, recursive=True):
