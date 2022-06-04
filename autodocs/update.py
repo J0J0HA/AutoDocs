@@ -58,14 +58,20 @@ with open("static/template.html", "r") as file:
     print("Loading template...")
     template = file.read()
 
+
+print(f"Creating folder ':markdown'...")
+os.mkdir("../docs/:markdown")
+
 # create required folders
 for folder in config["folders"]:
     print(f"Creating folder '{folder}'...")
     os.mkdir("../docs/" + folder)
+    os.mkdir("../docs/:markdown/" + folder)
 
 # implement internal files
-print(f"Creating folder '.autodocs'...")
+print(f"Creating folder ':autodocs'...")
 os.mkdir("../docs/:autodocs")
+print(f"Building folder ':autodocs'...")
 os.system("cp 'static/script.js' '../docs/:autodocs/script.js'")
 os.system("cp 'static/style.css' '../docs/:autodocs/style.css'")
 
@@ -85,6 +91,9 @@ for path in config["files"]:
                         .replace("%extra%", extra)
                         .replace("%content%", html)
                 )
+            # write original file in :markdown
+            with open("../docs/:markdown/" + filen.removeprefix("../"), "w") as file:
+                file.write(raw)
         else:
             # other files are tranferred directly to /docs
             print(f"Tranferring '{filen}'...")
