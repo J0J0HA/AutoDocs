@@ -33,7 +33,7 @@ pre, code {
 pre {
 	width: 99%;
 	margin-left: .5%;
-	overflow-x: scroll;
+	overflow-x: auto;
 }
 
 blockquote {
