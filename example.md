@@ -1,7 +1,7 @@
 # Big heading
 ##### Small heading
-> Blockquote
 Some `cool` code
+> Blockquote (also with `code`)
 ```
 Also multiple lines  
 are possible!
