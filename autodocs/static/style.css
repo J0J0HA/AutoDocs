@@ -35,3 +35,10 @@ pre {
 	margin-left: 1.75%;
 	margin-right: 1.75%;
 }
+
+blockquote {
+	background: #f9f9f9;
+	border-left: 3px solid #ccc;
+	margin: 1.5em 10px;
+	padding: 0.5em 10px;
+}
